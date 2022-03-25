@@ -175,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "مرحباً عبدالله",
+                                  "مرحباً محمد",
                                   textAlign: TextAlign.end,
                                   style: TextStyle(
                                       color: Colors.white,

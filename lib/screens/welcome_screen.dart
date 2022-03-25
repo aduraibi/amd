@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:amd/screens/login_screen.dart';
 
-import '../widgets/input_field.dart';
-import '../constants.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -106,8 +105,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           child: Icon(Icons.arrow_forward_ios_sharp),
           backgroundColor: Color(0xff264d6d),
           onPressed: () {
-            _pageViewController.nextPage(
-                duration: Duration(milliseconds: 300), curve: Curves.ease);
+            setState(() {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          LoginScreen()));
+            });
           },
         ),
         body: Container(

@@ -1,96 +1,160 @@
 import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:flutter_progress_hud/flutter_progress_hud.dart';
-
-import '../widgets/input_field.dart';
-
-// import '../widgets/reuseable_button.dart';
-import '../constants.dart';
-// import 'chat_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  // static const String id = 'Login_screen';
-
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // final _auth = FirebaseAuth.instance;
-  String email = "";
-  String password = "";
-
-  void updateEmail(String email) {
-    this.email = email;
-  }
-
-  void updatePassword(String password) {
-    this.password = password;
-  }
-
+  bool passVisible = true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("images/bground2.png"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-              height: 150.0,
-              width: 300,
-              child: Image.asset(
-                'images/bluelogo2.png',
+    return Directionality(
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+            body: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("images/bground2.png"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Center(
+                child: Container(
+                  padding: EdgeInsets.only(bottom: 80),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image(
+                        image: AssetImage("images/logo.png"),
+                        width: 200,
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 70),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Text("الهاتف"),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 70),
+                        child: TextFormField(
+                          validator: (val) {
+                            if (val == null || val.isEmpty) {
+                              return 'الرجاء ادخال رقم الجوال';
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.phone,
+                          // textAlign: TextAlign.right,
+                          decoration:  InputDecoration(
+                            hintText: "رقم الجوال",
+                            suffixIcon: Icon(Icons.phone),
+                            border: OutlineInputBorder (borderRadius: BorderRadius.circular(13),),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 70),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Text("كلمة المرور"),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 70),
+                        child: TextFormField(
+                          validator: (val) {
+                            if (val == null || val.isEmpty) {
+                              return 'الرجاء ادخال رقم الجوال';
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.phone,
+                          // textAlign: TextAlign.right,
+                          decoration:  InputDecoration(
+                            hintText: "كلمة المرور",
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  passVisible = !passVisible;
+                                });
+                              },
+
+                              icon: Icon(
+                                !passVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: !passVisible
+                                    ? Color(0xff8D4B99)
+                                    : Colors.grey,
+                              ),
+                          ),
+                            border: OutlineInputBorder (borderRadius: BorderRadius.circular(13),),
+                        ),
+                      ),),
+                      SizedBox(
+                        height: 70,
+                      ),
+                      // زر تسجيل الدخول
+                      Container(
+                        padding: EdgeInsets.only(bottom: 10),
+                        width: 175,
+                        height: 60,
+                        child: ElevatedButton(
+                          style: createdEleButtonStyle(),
+                          child: Text(
+                            'تسجيل الدخول',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("ليس لديك حساب؟"),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text("سجل الآن"),
+                        ],
+                      )
+                    ],
+                  ),
+
+                ),
               ),
             ),
-            SizedBox(
-              height: 48.0,
-            ),
-            InputField(
-              hintText: '053******',
-              inputType: InputType.email,
-              onChange: updateEmail,
-            ),
-            SizedBox(
-              height: 8.0,
-            ),
-            InputField(
-              hintText: '***********.',
-              inputType: InputType.password,
-              onChange: updatePassword,
-            ),
-            SizedBox(
-              height: 24.0,
-            ),
-            // ReuseableButton(
-            //   tag: 'Log In',
-            //   title: 'Log In',
-            //   buttonColor: Colors.lightBlueAccent,
-            //   onPress: () async {
-            //     final progress = ProgressHUD.of(context);
-            //     try {
-            //       progress!.show();
-            //       final newUser = await _auth.signInWithEmailAndPassword(
-            //           email: email, password: password);
-            //       if (newUser != null) {
-            //         progress.dismiss();
-            //         Navigator.pushNamed(context, ChatScreen.id);
-            //       }
-            //     } catch (e) {
-            //       progress!.dismiss();
-            //       print(e);
-            //     }
-            //   },
-            // ),
-          ],
-        ), /* add child content here */
-      ),
-    );
+          ),
+        );
   }
 }
+ButtonStyle createdEleButtonStyle() {
+  return ButtonStyle(
+    backgroundColor: MaterialStateProperty.all(Color(0xff264D6D)),
+    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(13.0),
+        // side: BorderSide(color: Color(0xff785283))
+      ),
+    ),
+  );
+}
+

@@ -2,6 +2,21 @@ import 'package:flutter/material.dart';
 
 enum InputType { text, email, password }
 
+List welcomeScreenContent = [
+  {
+    "header": "تخصصت ؟",
+    "description": "تعرف على التخصصات القريبة لك عن طريق اختبار قصير ..!",
+  },
+  {
+    "header": "محتار ؟",
+    "description": "استشر خبراء من نفس التخصص او من سوق العمل..",
+  },
+  {
+    "header": "الان اهم خطوة !",
+    "description":
+        "احصل على مرشدين يوجهونك خلال مرحلة تعلمك وطور نفس في مسارك مع مستشارين من سوق العمل",
+  },
+];
 // const kSendButtonTextStyle = TextStyle(
 //   color: Colors.lightBlueAccent,
 //   fontWeight: FontWeight.bold,
